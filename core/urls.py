@@ -22,7 +22,7 @@ urlpatterns = (
         re_path(r"media/(?P<path>.*)", serve, {"document_root": settings.MEDIA_ROOT}),
     ]
 )
-# urlpatterns += [
-
-# ]
+urlpatterns += [
+    path('users/v1/', include("apps.users.urls.v1")),
+]
 urlpatterns += swagger_patterns

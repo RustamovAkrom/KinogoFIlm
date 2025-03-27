@@ -1,17 +1,39 @@
+from datetime import datetime
+
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+
+from rest_framework_simplejwt.tokens import RefreshToken
+
 from apps.shared.models.base import AbstractBaseModel
 from .managers import UserManager # noqa
 
 
 class User(AbstractUser):
     email = models.EmailField(_("Email"), unique=True)
-    avatar = models.ImageField(upload_to="users/avatars/%Y/%m/%d", null=True, blank=True)
-    bio = models.TextField(blank=True)
+    avatar = models.ImageField(_("Avatar"), upload_to="users/avatars/%Y/%m/%d", null=True, blank=True)
+    bio = models.TextField(_("Bio"), blank=True)
     is_verified = models.BooleanField(_("Verified"), default=True)
-    date_of_birth = models.DateTimeField(null=True, blank=True)
+    date_of_birth = models.DateTimeField(_("Date of birth"), null=True, blank=True)
 
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = []
+
+    objects = UserManager()
+
+    @property
+    def tokens(self):
+        refresh = RefreshToken.for_user(self)
+        ts = refresh.access_token.payload['exp']
+        dt = datetime.fromtimestamp(ts)
+        data = {
+            'access': str(refresh.access_token),
+            'refresh': str(refresh),
+            'expires_in': str(dt),
+            'user_id': str(self.id),
+        }
+        return data
     
     # Дополнительные методы
     def get_avatar_url(self):
@@ -35,7 +57,7 @@ class User(AbstractUser):
         verbose_name_plural = _("Users")
 
     def __str__(self):
-        return self.username
+        return self.get_full_name_or_username()
     
 
 class UserProfile(AbstractBaseModel):

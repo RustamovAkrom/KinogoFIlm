@@ -2,6 +2,8 @@ REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_RENDERER_CLASSES": [
@@ -20,10 +22,10 @@ REST_FRAMEWORK = {
     "EXCEPTION_HANDLER": "apps.shared.exceptions.custom_exception_handler",
 }
 
-SPECTACULAR_SETTINGS = {
-    "SWAGGER_UI_DIST": "SIDECAR",
-    "SWAGGER_UI_FAVICON_HREF": "SIDECAR",
-    "REDOC_DIST": "SIDECAR",
-    "TITLE": "Django Rest API",
-    "DESCRIPTION": "Django Rest API",
-}
+# SPECTACULAR_SETTINGS = {
+#     "SWAGGER_UI_DIST": "KinogoFilm",
+#     "SWAGGER_UI_FAVICON_HREF": "KinogoFilm",
+#     "REDOC_DIST": "KinogoFilm",
+#     "TITLE": "KinogoFilm Rest API",
+#     "DESCRIPTION": "KinogoFilm Rest API",
+# }

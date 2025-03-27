@@ -128,3 +128,12 @@ ADMIN_PASSWORD = str(os.getenv("ADMIN_PASSWORD"))
 ADMIN_EMAIL = str(os.getenv("ADMIN_EMAIL"))
 
 AUTH_USER_MODEL = "users.User"
+
+GOOGLE_CLIENT_ID = ""
+FACEBOOK_APP_ID = "566182455819275"
+
+SOCIAL_SECRET = "SOCIAL_SECRET"
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]

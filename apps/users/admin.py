@@ -1,11 +1,16 @@
 from django.contrib import admin
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 from apps.users.models import User, UserProfile
 
-from unfold.admin import ModelAdmin
+from unfold.admin import ModelAdmin, StackedInline
 from unfold.forms import UserChangeForm, UserCreationForm, AdminPasswordChangeForm
 
+
+class UserProfileInline(StackedInline):
+    model = UserProfile
+    can_delete = False
 
 @admin.register(User)
 class UserAdmin(BaseUserAdmin, ModelAdmin):
@@ -18,8 +23,17 @@ class UserAdmin(BaseUserAdmin, ModelAdmin):
     ordering = ("username",)
     list_editable = ("is_active", "is_staff", "is_superuser")
     filter_vertical = ("groups", "user_permissions")
-
-
-@admin.register(UserProfile)
-class UserProfile(ModelAdmin):
-    pass
+    inlines = (UserProfileInline, )
+    fieldsets = (
+        (None, {'fields': ('username', 'email', 'password')}),
+        (_('Personal info'), {'fields': ('first_name', 'last_name')}),
+        (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
+        'groups', 'user_permissions')}),
+        (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
+        )
+    add_fieldsets = (
+        (None, {
+        'classes': ('wide',),
+        'fields': ('email', 'password1', 'password2'),
+        }),
+    )
