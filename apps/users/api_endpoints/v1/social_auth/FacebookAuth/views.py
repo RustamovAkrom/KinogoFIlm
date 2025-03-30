@@ -20,6 +20,7 @@ class FacebookSocialAuthView(GenericAPIView):
             request=FacebookSocialAuthSerializer,
             responses={200: FacebookSocialAuthSerializer},
             summary="Authentication for Facebook",
+            tags=['Social Auth'],
     )
     def post(self, request):        
         serializer = self.get_serializer(data=request.data)
