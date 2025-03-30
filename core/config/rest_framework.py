@@ -22,10 +22,21 @@ REST_FRAMEWORK = {
     # "EXCEPTION_HANDLER": "apps.shared.exceptions.custom_exception_handler",
 }
 
-# SPECTACULAR_SETTINGS = {
-#     "SWAGGER_UI_DIST": "KinogoFilm",
-#     "SWAGGER_UI_FAVICON_HREF": "KinogoFilm",
-#     "REDOC_DIST": "KinogoFilm",
-#     "TITLE": "KinogoFilm Rest API",
-#     "DESCRIPTION": "KinogoFilm Rest API",
-# }
+SPECTACULAR_SETTINGS = {
+    "TITLE": "KinogoFill.biz API",  # Название проекта
+    "VERSION": "0.0.1",  # Версия API
+    "DESCRIPTION": "API для управления контентом KinogoFill.biz",  # Описание API
+    "SERVE_INCLUDE_SCHEMA": False,  # Отключает `/schema` (если не нужен)
+    "SERVE_PERMISSIONS": ["rest_framework.permissions.AllowAny"],  # Доступ к документации
+    "SWAGGER_UI_SETTINGS": {
+        "filter": True,  # Включает поиск по тегам
+        "persistAuthorization": True,  # Сохраняет авторизацию между запросами
+        "displayRequestDuration": True,  # Показывает длительность запроса
+    },
+    "SORT_OPERATIONS": False,  # Отключает автоматическую сортировку эндпоинтов (если важно)
+    "COMPONENT_SPLIT_REQUEST": True,  # Разделяет схемы запроса и ответа
+    "ENUM_NAME_OVERRIDES": {},  # Позволяет вручную переопределять имена enum'ов
+    "POSTPROCESSING_HOOKS": [
+        "drf_spectacular.hooks.postprocess_schema_enums",  # Улучшает поддержку ENUM
+    ],
+}
