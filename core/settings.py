@@ -129,11 +129,12 @@ ADMIN_EMAIL = str(os.getenv("ADMIN_EMAIL"))
 
 AUTH_USER_MODEL = "users.User"
 
-GOOGLE_CLIENT_ID = ""
-FACEBOOK_APP_ID = "566182455819275"
+GOOGLE_CLIENT_ID = str(os.getenv("GOOGLE_CLIENT_ID"))
+FACEBOOK_APP_ID = str(os.getenv("FACEBOOK_APP_ID"))
 
 SOCIAL_SECRET = "SOCIAL_SECRET"
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
+    'core.auth.EmailAuthBackend',
 ]

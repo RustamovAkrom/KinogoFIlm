@@ -16,7 +16,8 @@ class User(AbstractUser):
     bio = models.TextField(_("Bio"), blank=True)
     is_verified = models.BooleanField(_("Verified"), default=True)
     date_of_birth = models.DateTimeField(_("Date of birth"), null=True, blank=True)
-
+    is_social_user = models.BooleanField(_("Is social user"), default=False)
+    
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
