@@ -23,6 +23,6 @@ urlpatterns = (
     ]
 )
 urlpatterns += [
-    path('users/v1/', include("apps.users.urls.v1")),
+    path('api/v1/users/', include("apps.users.urls.v1")),
 ]
 urlpatterns += swagger_patterns

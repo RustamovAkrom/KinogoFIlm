@@ -13,7 +13,9 @@ class LogoutView(APIView):
 
     @extend_schema(
         request=LogoutSerializer,
-        responses={200: {"description": "Successfully logged out"}}
+        responses={200: {"description": "Successfully logged out"}},
+        description="Logged out system.",
+        tags=["Auth"],
     )
     def post(self, request):
         serializer = LogoutSerializer(data=request.data)
