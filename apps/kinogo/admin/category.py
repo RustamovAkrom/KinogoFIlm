@@ -5,5 +5,5 @@ from apps.kinogo.models.category import Category
 
 @admin.register(Category)
 class CategoryAdmin(ModelAdmin):
-    list_display = ("name", )
-    search_fields = ("name", )
+    list_display = ("name",)
+    search_fields = ("name",)

@@ -14,13 +14,19 @@ class Command(BaseCommand):
         if not User.objects.filter(username=USERNAME, email=EMAIL).exists():
             try:
                 user = User.objects.create_superuser(
-                    username=USERNAME,
-                    password=PASSWORD,
-                    email=EMAIL
+                    username=USERNAME, password=PASSWORD, email=EMAIL
                 )
-                self.stdout.write(self.style.SUCCESS(f"Superuser {user.username} successfully created."))
-                
-            except:
-                self.stdout.write(self.style.WARNING(f"Superuser {USERNAME} already exists."))
+                self.stdout.write(
+                    self.style.SUCCESS(
+                        f"Superuser {user.username} successfully created."
+                    )
+                )
+
+            except Exception:
+                self.stdout.write(
+                    self.style.WARNING(f"Superuser {USERNAME} already exists.")
+                )
         else:
-            self.stdout.write(self.style.WARNING(f"Superuser {USERNAME} already exists."))
+            self.stdout.write(
+                self.style.WARNING(f"Superuser {USERNAME} already exists.")
+            )

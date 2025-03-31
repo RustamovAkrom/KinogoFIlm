@@ -10,7 +10,7 @@ class Actor(AbstractBaseModel):
     class Meta:
         verbose_name = _("Actor")
         verbose_name_plural = _("Actors")
-        ordering = ['-created_at']
-    
+        ordering = ["-created_at"]
+
     def __str__(self):
         return self.name

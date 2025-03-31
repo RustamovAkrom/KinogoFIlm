@@ -3,7 +3,6 @@ from django.urls import path
 from apps.users.api_endpoints.v1 import social_auth, auth
 
 
-
 urlpatterns = [
     path(
         "login/",

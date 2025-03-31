@@ -10,25 +10,78 @@ from apps.kinogo.models.tag import MovieTag
 class MovieTagInline(TabularInline):
     model = MovieTag
     extra = 1
-    autocomplete_fields = ("tag", )
+    autocomplete_fields = ("tag",)
 
 
 @admin.register(Movie)
 class MovieAdmin(ModelAdmin):
-    list_display = ("title", "year_of_release", "views_count", "is_published", )
+    list_display = (
+        "title",
+        "year_of_release",
+        "views_count",
+        "is_published",
+    )
     list_editable = ("is_published",)
-    list_filter = ("year_of_release", "genres", "category", "is_published", )
-    search_fields = ("title", "description", )
-    autocomplete_fields = ("genres", "category", "directors", "actors", )
-    readonly_fields = ("views_count", "slug", "movie_preview", "trailer_preview", )
+    list_filter = (
+        "year_of_release",
+        "genres",
+        "category",
+        "is_published",
+    )
+    search_fields = (
+        "title",
+        "description",
+    )
+    autocomplete_fields = (
+        "genres",
+        "category",
+        "directors",
+        "actors",
+    )
+    readonly_fields = (
+        "views_count",
+        "slug",
+        "movie_preview",
+        "trailer_preview",
+    )
     inlines = [MovieTagInline]
     fieldsets = (
-        ("Основная информация", {"fields": ("title", "slug", "description", "year_of_release", "world_premiere", "country")}),
-        ("Медиа", {"fields": ("banner", "video_file", "trailer_url", "movie_preview", "trailer_preview", )}),
-        ("Дополнительные параметры", {"fields": ("duration", "language", "subtitles", "is_published")}),
-        ("Категории и связи", {"fields": ("genres", "category", "directors", "actors")}),
-        ("Системные данные", {"fields": ("views_count", )}),
+        (
+            "Основная информация",
+            {
+                "fields": (
+                    "title",
+                    "slug",
+                    "description",
+                    "year_of_release",
+                    "world_premiere",
+                    "country",
+                )
+            },
+        ),
+        (
+            "Медиа",
+            {
+                "fields": (
+                    "banner",
+                    "video_file",
+                    "trailer_url",
+                    "movie_preview",
+                    "trailer_preview",
+                )
+            },
+        ),
+        (
+            "Дополнительные параметры",
+            {"fields": ("duration", "language", "subtitles", "is_published")},
+        ),
+        (
+            "Категории и связи",
+            {"fields": ("genres", "category", "directors", "actors")},
+        ),
+        ("Системные данные", {"fields": ("views_count",)}),
     )
+
     def get_queryset(self, request):
         return super().get_queryset(request).select_related("category")
 
@@ -51,14 +104,13 @@ class MovieAdmin(ModelAdmin):
                     <a href='{}' target='_blank' style='color: blue;'>Посмотреть на YouTube</a>
                     """,
                     embed_url,
-                    obj.trailer_url
+                    obj.trailer_url,
                 )
 
             return "Invalid YouTube link"
 
         return "No trailer available"
 
-    
     trailer_preview.short_description = "Trailer Preview"
 
     # Предпросмотр фильма в админке
@@ -67,29 +119,52 @@ class MovieAdmin(ModelAdmin):
             return format_html(
                 '<video width="640" height="360" controls>'
                 '<source src="{}" type="video/mp4">'
-                'Your browser does not support the video tag.'
-                '</video>',
-                obj.video_file.url
+                "Your browser does not support the video tag."
+                "</video>",
+                obj.video_file.url,
             )
         return "No movie file available"
-    
+
     movie_preview.short_description = "Movie Preview"
 
 
 @admin.register(MovieLikes)
 class MovieLikesAdmin(ModelAdmin):
-    list_display = ("user", "movie", "created_at", )
-    search_fields = ("user__username", "movie__title", )
+    list_display = (
+        "user",
+        "movie",
+        "created_at",
+    )
+    search_fields = (
+        "user__username",
+        "movie__title",
+    )
 
 
 @admin.register(MovieDislikes)
 class MovieDislikesAdmin(ModelAdmin):
-    list_display = ("user", "movie", "created_at", )
-    search_fields = ("user__username", "movie__title", )
+    list_display = (
+        "user",
+        "movie",
+        "created_at",
+    )
+    search_fields = (
+        "user__username",
+        "movie__title",
+    )
 
 
 @admin.register(MovieComment)
 class MovieCommentAdmin(ModelAdmin):
-    list_display = ("user", "movie", "created_at", "message", )
-    search_fields = ("user__username", "movie__title", "message", )
-    list_filter = ("created_at", )
+    list_display = (
+        "user",
+        "movie",
+        "created_at",
+        "message",
+    )
+    search_fields = (
+        "user__username",
+        "movie__title",
+        "message",
+    )
+    list_filter = ("created_at",)

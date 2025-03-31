@@ -23,7 +23,7 @@ UNFOLD = {
             "link": "/",
         },
         # ...
-    ],    
+    ],
     "SITE_URL": "/",
     "SITE_ICON": {
         "light": lambda request: static("images/django-logo.webp"),

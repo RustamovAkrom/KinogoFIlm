@@ -13,18 +13,18 @@ class FacebookSocialAuthSerializer(serializers.Serializer):
 
         if "error" in user_data:
             raise serializers.ValidationError("Invalid token. please login again.")
-        
+
         try:
-            user_id = user_data['id']
-            email = user_data['email']
-            name = user_data['name']
+            user_id = user_data["id"]
+            email = user_data["email"]
+            name = user_data["name"]
             provider = "facebook"
 
             data = register_social_user(
                 provider=provider, user_id=user_id, email=email, name=name
             )
             return data
-        
+
         except Exception:
 
             raise serializers.ValidationError(

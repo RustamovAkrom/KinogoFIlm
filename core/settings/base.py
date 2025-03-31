@@ -112,8 +112,8 @@ FACEBOOK_APP_ID = str(os.getenv("FACEBOOK_APP_ID"))
 SOCIAL_SECRET = "SOCIAL_SECRET"
 
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-    'core.auth.EmailAuthBackend',
+    "django.contrib.auth.backends.ModelBackend",
+    "core.auth.EmailAuthBackend",
 ]
 
 DJANGO_SETTINGS_MODULE = os.getenv("DJANGO_SETTINGS_MODULE")

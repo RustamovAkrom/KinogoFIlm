@@ -4,6 +4,7 @@ from drf_spectacular.utils import extend_schema
 from apps.users.models import User
 from .serializers import RegisterSerializer
 
+
 @extend_schema(
     request=RegisterSerializer,
     responses={201: RegisterSerializer},
@@ -12,7 +13,8 @@ from .serializers import RegisterSerializer
 )
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
-    permission_classes = (AllowAny, )
+    permission_classes = (AllowAny,)
     serializer_class = RegisterSerializer
 
-__all__ = ("RegisterView", )
+
+__all__ = ("RegisterView",)

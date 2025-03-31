@@ -9,6 +9,7 @@ urlpatterns = []
 
 if settings.DEBUG:
     from core.config.swagger import urlpatterns as swagger_patterns
+
     urlpatterns += swagger_patterns
 
 
@@ -27,8 +28,8 @@ urlpatterns += i18n_patterns(
 
 # Routes API (version 1)
 urlpatterns += [
-    path('api/v1/users/', include("apps.users.urls.v1")),
-    path('api/v1/kinogo/', include("apps.kinogo.urls.v1")),
+    path("api/v1/users/", include("apps.users.urls.v1")),
+    path("api/v1/kinogo/", include("apps.kinogo.urls.v1")),
 ]
 
 if settings.DEBUG:

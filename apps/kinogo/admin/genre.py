@@ -5,5 +5,5 @@ from apps.kinogo.models.genre import Genre
 
 @admin.register(Genre)
 class GenreAdmin(ModelAdmin):
-    list_display = ("name", )
-    search_fields = ("name", )
+    list_display = ("name",)
+    search_fields = ("name",)

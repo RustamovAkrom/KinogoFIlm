@@ -56,7 +56,7 @@ def random_data():
                 "title": "Product A Performance",
                 "metric": metric,
                 "footer": mark_safe(
-                    f'<strong class="text-green-700 font-semibold dark:text-green-400">+{intcomma(f"{random.uniform(1, 9):.02f}")}%</strong>&nbsp;progress from last week'
+                    f'<strong class="text-green-700 font-semibold dark:text-green-400">+{intcomma(f"{random.uniform(1, 9):.02f}")}%</strong>&nbsp;progress from last week'  # noqa
                 ),
                 "chart": json.dumps(
                     {
@@ -69,14 +69,14 @@ def random_data():
                 "title": "Product B Performance",
                 "metric": metric,
                 "footer": mark_safe(
-                    f'<strong class="text-green-700 font-semibold dark:text-green-400">+{intcomma(f"{random.uniform(1, 9):.02f}")}%</strong>&nbsp;progress from last week'
+                    f'<strong class="text-green-700 font-semibold dark:text-green-400">+{intcomma(f"{random.uniform(1, 9):.02f}")}%</strong>&nbsp;progress from last week'  # noqa
                 ),
             },
             {
                 "title": "Product C Performance",
                 "metric": metric,
                 "footer": mark_safe(
-                    f'<strong class="text-green-700 font-semibold dark:text-green-400">+{intcomma(f"{random.uniform(1, 9):.02f}")}%</strong>&nbsp;progress from last week'
+                    f'<strong class="text-green-700 font-semibold dark:text-green-400">+{intcomma(f"{random.uniform(1, 9):.02f}")}%</strong>&nbsp;progress from last week'  # noqa
                 ),
             },
         ],

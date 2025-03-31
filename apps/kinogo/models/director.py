@@ -10,7 +10,7 @@ class Director(AbstractBaseModel):
     class Meta:
         verbose_name = _("Director")
         verbose_name_plural = _("Directors")
-        ordering = ['-created_at']
-    
+        ordering = ["-created_at"]
+
     def __str__(self):
         return self.name

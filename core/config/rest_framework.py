@@ -27,7 +27,9 @@ SPECTACULAR_SETTINGS = {
     "VERSION": "0.0.1",  # Версия API
     "DESCRIPTION": "API для управления контентом KinogoFill.biz",  # Описание API
     "SERVE_INCLUDE_SCHEMA": False,  # Отключает `/schema` (если не нужен)
-    "SERVE_PERMISSIONS": ["rest_framework.permissions.AllowAny"],  # Доступ к документации
+    "SERVE_PERMISSIONS": [
+        "rest_framework.permissions.AllowAny"
+    ],  # Доступ к документации
     "SWAGGER_UI_SETTINGS": {
         "filter": True,  # Включает поиск по тегам
         "persistAuthorization": True,  # Сохраняет авторизацию между запросами

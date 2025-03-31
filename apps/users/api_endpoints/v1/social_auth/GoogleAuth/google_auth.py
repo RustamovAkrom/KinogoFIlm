@@ -11,9 +11,9 @@ class Google:
             idinfo = id_token.verify_oauth2_token(
                 auth_token, requests.Request(), settings.GOOGLE_CLIENT_ID
             )
-            
+
             return idinfo
-        
+
         except Exception as e:
             print(f"Google Auth Error: {e}")
             return "The token is either invalid or has expired"

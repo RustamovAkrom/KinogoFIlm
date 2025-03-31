@@ -9,7 +9,7 @@ from .serializers import LogoutSerializer
 
 
 class LogoutView(APIView):
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated,)
 
     @extend_schema(
         request=LogoutSerializer,
@@ -22,20 +22,25 @@ class LogoutView(APIView):
 
         if serializer.is_valid():
             try:
-                refresh_token = serializer.validated_data['refresh_token']
+                refresh_token = serializer.validated_data["refresh_token"]
 
                 if not refresh_token:
-                    return Response({"error": "Refresh token is required"}, status=status.HTTP_400_BAD_REQUEST)
-                
+                    return Response(
+                        {"error": "Refresh token is required"},
+                        status=status.HTTP_400_BAD_REQUEST,
+                    )
+
                 token = RefreshToken(refresh_token)
                 token.blacklist()
 
-                return Response({"message": "successfully logged out"}, status=status.HTTP_200_OK)
-            
+                return Response(
+                    {"message": "successfully logged out"}, status=status.HTTP_200_OK
+                )
+
             except Exception as e:
                 return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
-            
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
 
-__all__ = ("LogoutView", )
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+__all__ = ("LogoutView",)

@@ -1,2 +1,2 @@
-from .FacebookAuth import * # noqa
-from .GoogleAuth import * # noqa
+from .FacebookAuth import *  # noqa
+from .GoogleAuth import *  # noqa
